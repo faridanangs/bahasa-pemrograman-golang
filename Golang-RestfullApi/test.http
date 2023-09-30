@@ -1,0 +1,26 @@
+GET http://localhost:3000/api/categories
+Accept: application/json
+X-API-Key: RAHASIA
+
+
+POST http://localhost:3000/api/categories
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": 12
+}
+
+GET http://localhost:3000/api/categories/1210
+Accept: application/json
+
+PUT http://localhost:3000/api/categories/13
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "farid anang s"
+}
+
+DELETE http://localhost:3000/api/categories/13
+Accept: application/json

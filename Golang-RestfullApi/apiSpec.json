@@ -1,0 +1,257 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "category RestfullApi",
+        "description": "Api Spec for RestFullApi",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api"
+        }
+    ],
+    "paths": {
+        "/categorie": {
+            "get": {
+                "security": [{"CategoriAuth": []}],
+                "tags": [
+                    "Categorie Api"
+                ],
+                "summary": "Get All Categories",
+                "description": "List All Categories",
+                "responses": {
+                    "200": {
+                        "description": "Success get all categories",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Categorie"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [{"CategoriAuth": []}],
+                "tags": [
+                    "Categorie Api"
+                ],
+                "summary": "Create Categorie",
+                "responses": {
+                    "200": {
+                        "description": "Success Create Categorie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Categorie"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateOrUpdate"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categorie/{categoriId}": {
+            "get": {
+                "security": [{"CategoriAuth": []}],
+                "description": "Get Categorie By Id",
+                "summary": "Get Categorie By Id",
+                "tags": ["Categorie Api"],
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minLength": 1
+                        },
+                        "name": "categoriId",
+                        "in": "path",
+                        "description": "categori Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get categorie id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Categorie"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [{"CategoriAuth": []}],
+                "description": "Update categori",
+                "tags": ["Categorie Api"],
+                "summary": "Update Categori",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minLength": 1
+                        },
+                        "description": "Update Categori",
+                        "name": "categoriId",
+                        "in": "path"
+
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Update Categori",
+                        "content": {
+                            "application/json":{
+                               "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Categorie"
+                                        }
+
+                                    }
+                                }
+                               }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                               "$ref": "#/components/schemas/CreateOrUpdate"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{"CategoriAuth": []}],
+                "description": "Delete Categorie By Id",
+                "summary": "Delete Categorie By Id",
+                "tags": ["Categorie Api"],
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minLength": 1
+                        },
+                        "name": "categoriId",
+                        "in": "path",
+                        "description": "categori Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete categorie",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Categorie": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "CreateOrUpdate": {
+                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+            }
+        },
+        "securitySchemes": {
+            "CategoriAuth": {
+                "name": "X-API-KEY",
+                "in": "header",
+                "type": "apiKey",
+                "description": "Authentication for Categori Api"
+            }
+        }
+    }
+}

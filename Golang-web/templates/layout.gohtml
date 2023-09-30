@@ -1,0 +1,10 @@
+{{define "layout"}}
+{{/* 
+kemudian cara menmanggil nilai dari define tersebut kita bisa menggunakan template dan nama dari
+file tersebut conth {{template "header"}} 
+supaya header dan footer bisa menerima data dari layout ini kita bisa menggunakan . utnuk mengirim semua data yang ada di dalamnya
+*/}}
+{{template "header" .}}
+ <h1>Hello {{.Name}}</h1>
+{{template "footer" .}}
+{{end}}
