@@ -1,0 +1,33 @@
+GET http://localhost:3000/news
+Accept: application/json
+NEWS-API-KEY: RAHASIA
+
+POST http://localhost:3000/news
+Content-Type: application/json
+NEWS-API-KEY: RAHASIA
+
+{
+    "judul": "ini berita dasvduasuat s",
+    "gambar": "hdusahdus",
+    "deskripsi": "didhugdegdyewf",
+    "penulis": "segeng"
+}
+
+PUT http://localhost:3000/news/category/2
+Content-Type: application/json
+NEWS-API-KEY: RAHASIA
+
+{
+    "judul": "ini berita yusron",
+    "gambar": "hdusahdus",
+    "deskripsi": "didhugdegdyewf",
+    "penulis": "udin"
+}
+
+GET   http://localhost:3000/news/category/2
+Accept: application/json
+NEWS-API-KEY: RAHASIA
+
+DELETE  http://localhost:3000/news/category/2
+Content-Type: : application/json
+NEWS-API-KEY: RAHASIA

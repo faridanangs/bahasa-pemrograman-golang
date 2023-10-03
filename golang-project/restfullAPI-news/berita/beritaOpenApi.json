@@ -1,0 +1,280 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Berita RESTful Api",
+        "version": "1.0.0",
+        "description": "Documentasi api berita"
+    },
+    "servers": [
+        {
+            "url": "http://nagsnews.com"
+        }
+    ],
+    "paths": {
+        "/news": {
+            "get": {
+                "security": [{"newsAuth": []}],
+                "tags": ["News Api"],
+                "summary": "Mengambil semua data berita",
+                "description": "Daftar semua data berita",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil semua data berita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/news"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [{"newsAuth": []}],
+                "tags": ["News Api"],
+                "summary": "Membuat Berita",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/newsCreateOrUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil membuat berita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/news"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/category/{newsID}": {
+            "get": {
+                "security": [{"newsAuth": []}],
+                "summary": "Mengambil data berita sesuai id",
+                "tags": [
+                    "News Api"
+                ],
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "minLength": 1
+                        },
+                        "name": "newsID",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data berita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/news"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [{"newsAuth": []}],
+                "tags": ["News Api"],
+                "summary": "Update berita",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "minLength": 1,
+                            "type": "integer"
+                        },
+                        "name": "newsID",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "status": {
+                                        "type": "string"
+                                    },
+                                    "cede": {
+                                        "type": "integer"
+                                    },
+                                    "data": {
+                                        "$ref": "#/components/schemas/newsCreateOrUpdate"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengupdate berita",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/news"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [{"newsAuth": []}],
+                "tags": ["News Api"],
+                "summary": "Hapus berita sesuai id",
+                "parameters": [
+                    {
+                        "required": true,
+                        "schema": {
+                            "minLength": 1,
+                            "type": "integer"
+                        },
+                        "name": "newsID",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Berita berhasil di hapus",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "news": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "gambar": {
+                            "type": "string"
+                        },
+                        "judul": {
+                            "type": "string"
+                        },
+                        "deskripsi": {
+                            "type": "string"
+                        },
+                        "penulis": {
+                            "type": "string"
+                        },
+                        "waktu": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "newsCreateOrUpdate": {
+                "type": "object",
+                "properties": {
+                    "gambar": {
+                        "type": "string",
+                        "maxLength": 355
+
+                    },
+                    "judul": {
+                        "type": "string",
+                        "maxLength": 300
+                    },
+                    "deskripsi": {
+                        "type": "string"
+                    },
+                    "penulis": {
+                        "type": "string",
+                        "maxLength": 40
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "newsAuth": {
+                "in": "header",
+                "type": "apiKey",
+                "name": "NEWS-API-KEY",
+                "description": "Autentikasi untuk news api"
+            }
+        }
+    }
+}
